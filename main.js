@@ -67,6 +67,7 @@ var SpacebookApp = function () {
     },
 
     removePost: function (postID) {
+      debugger
       var post = this._findPostById(postID);
       this.posts.splice(this.posts.indexOf(post), 1);
     },
