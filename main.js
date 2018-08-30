@@ -67,23 +67,31 @@ var SpacebookApp = function () {
                 let commentsContainer = `<div class="comments-container">
                 <input type="text" class="comment-name">
                 <button class="btn btn-primary add-comment">Post Comment</button> 
-                ${this.getCommentsHTML(post)}
+                ${this.addComments(post.comments)}
                 </div>`;
                 
                 
-                this.$posts.append('<div class="post" data-id=' + post.id + '>'+
-                '<p class="text">'+ post.text + '</p>'
-                +'<button type="button" class="btn button remove">remove</button> ' + 
-                '<button type="button" class="btn button show-comments">comments</button> ' +
-                commentsContainer)+"</div>";
+                let $myPost = $('<div class="post" data-id=' + post.id + '>'+
+                '<p class="text">'+ post.text + '</p><br>'
+                +'<button type="button" class="btn button remove">Remove Post</button> ' + 
+                '<button type="button" class="btn button show-comments">Toggle Comments</button> ' +
+                commentsContainer);
                 
-                for (let a = 0; a < this.posts[i].comments.length; a++) {
-                    let $comments ="<div class='comment' data-id='"+ post.comments[a].id +"'>" +
-                    post.comments[a].text + "<button type='button' class='btn removeComment'>remove</button></div>"
-                    this.$posts.append($comments)
-                }
+
+                $('.posts').append($myPost)
 
             }
+
+            
+        },
+
+        addComments: function(comments){
+            let $comments =""
+            for (let a = 0; a < comments.length; a++) {
+                $comments+="<div class='comment' data-id='"+ comments[a].id +"'>" +
+                comments[a].text + "<button type='button' class='btn removeComment'>Remove Comment</button></div>"
+            }
+            return $comments
         },
 
         removePost: function (postID) {
@@ -95,7 +103,7 @@ var SpacebookApp = function () {
 
         toggleComments: function (currentPost) {
             var $clickedPost = $(currentPost).closest('.post');
-            $clickedPost.find('.comments-container').toggleClass('show');
+            $clickedPost.find('.comments-container,.comment').toggleClass('show');
         },
 
         createComment: function (postID,commentText) {
@@ -107,9 +115,6 @@ var SpacebookApp = function () {
             let i = this._findPostById(postID)
             let a = this._findCommentById(postID, commentID)
             this.posts[i].comments.splice(a,1)
-        },
-        getCommentsHTML: function () {
-            //TODO
         }
     };
 }

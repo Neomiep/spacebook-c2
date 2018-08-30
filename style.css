@@ -5,26 +5,43 @@
 .show {
   display: block;
 }
-.posts{
+.row{
   width:70%;
 margin:0 auto;
 }
+.text{
+font-size:20px;
+border-radius: 5px;
+background-color:rgb(151, 166, 252);
+display:inline-block;
+padding:4px;
+border:rgb(52, 63, 102) solid 1.5px;
+}
 .post{
 background-color:rgb(73, 99, 185);
-padding:10px;
+padding:15px;
 margin-top: 17px;
 color:black;
-border-top-left-radius: 5px;
-border-top-right-radius: 5px;
-font-size:20px;
+border-radius: 5px;
+border:black solid 2px;
 }
 .comment{
-  background-color:rgb(132, 145, 185);
+  background-color:rgb(184, 185, 190);
   color:black;
   padding:11px;
-  border-top:grey solid 1px
+  font-size:15px;
+  border-radius: 5px;
+  margin-top:8px;
+  border:rgb(66, 71, 87) solid 1px;
 }
 .removeComment{
   display:block;
   margin-top:5px;
+}
+.remove,.show-comments{
+  margin-bottom:5px
+}
+.comment-name{
+  border-radius: 5px;
+  border: rgb(54, 54, 54) solid 1px;
 }
